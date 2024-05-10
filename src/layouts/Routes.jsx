@@ -3,6 +3,7 @@ import Root from "./Root";
 import ErrorPage from "../mainPages/ErrorPage";
 import Home from "../mainPages/Home";
 import Login from "../mainPages/Login";
+import Register from "../mainPages/Register";
 
 const Routes = createBrowserRouter([
     {
@@ -20,7 +21,11 @@ const Routes = createBrowserRouter([
             },
             {
                 path: '/register',
-                element: <h1>Hi to register</h1>,
+                element: <Register></Register>,
+            },
+            {
+                path: '/all-foods',
+                element: <h1>Hi to all foods</h1>,
             },
         ]
     },

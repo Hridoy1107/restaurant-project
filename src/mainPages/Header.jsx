@@ -2,7 +2,9 @@ import img from '../assets/icon.png';
 import sun from '../assets/sun.png';
 import moon from '../assets/moon.png';
 import { NavLink } from 'react-router-dom';
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import { AuthContext } from "../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Header = () => {
 
@@ -23,15 +25,76 @@ const Header = () => {
         document.querySelector('html').setAttribute('data-theme', localTheme)
     }, [theme])
 
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You have to log in again!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Log out!'
+        }).then((result) => {
+            if (result.isConfirmed)
+                logOut()
+                    .then(() => console.log('user logged out successfully'),
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'User Log Out Successfully',
+                            icon: 'success',
+                            confirmButtonText: 'Cool'
+                        }))
+                    .catch(error => console.error(error))
+        })
+
+    }
+
     const linksCenter = <>
-        <NavLink to="/" className=" btn btn-info w-[148px] h-[48px]"><span className=" text-lg">Home</span></NavLink>
-        <NavLink to="/all-foods" className=" btn btn-info w-[148px] h-[48px]"><span className=" text-lg">All Foods</span></NavLink>
-        <NavLink to="/gallery" className=" btn btn-info w-[148px] h-[48px]"><span className=" text-lg ">Gallery</span></NavLink>
+        <NavLink to="/" 
+        style={({ isActive }) => {
+            return {
+                background: isActive ? "none" : " ",
+                border: isActive ? "solid" : " ",
+            };
+        }}
+        className=" btn btn-info w-[148px] h-[48px]"><span className=" text-lg">Home</span></NavLink>
+        <NavLink to="/all-foods"
+        style={({ isActive }) => {
+            return {
+                background: isActive ? "none" : " ",
+                border: isActive ? "solid" : " ",
+            };
+        }} 
+        className=" btn btn-info w-[148px] h-[48px]"><span className=" text-lg">All Foods</span></NavLink>
+        <NavLink to="/gallery"
+        style={({ isActive }) => {
+            return {
+                background: isActive ? "none" : " ",
+                border: isActive ? "solid" : " ",
+            };
+        }} 
+        className=" btn btn-info w-[148px] h-[48px]"><span className=" text-lg ">Gallery</span></NavLink>
 
     </>
     const linksEnd = <>
-        <NavLink to="/login" className=" btn btn-accent w-[148px] h-[48px]"><span className=" text-lg ">Login</span></NavLink>
-        <NavLink to="/register" className=" btn btn-accent w-[148px] h-[48px]"><span className=" text-lg ">Register</span></NavLink>
+        <NavLink to="/login" 
+        style={({ isActive }) => {
+            return {
+                background: isActive ? "none" : " ",
+                border: isActive ? "solid" : " ",
+            };
+        }} 
+        className=" btn btn-accent w-[148px] h-[48px]"><span className=" text-lg ">Login</span></NavLink>
+        <NavLink to="/register" 
+        style={({ isActive }) => {
+            return {
+                background: isActive ? "none" : " ",
+                border: isActive ? "solid" : " ",
+            };
+        }} 
+        className=" btn btn-accent w-[148px] h-[48px]"><span className=" text-lg ">Register</span></NavLink>
     </>
 
     return (
@@ -45,7 +108,9 @@ const Header = () => {
                             </div>
                             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box gap-y-2 w-[164px]">
                                 {linksCenter}
-                                {linksEnd}
+                                {user ?
+                                <></> : <>{linksEnd}</>
+                                }
                             </ul>
                         </div>
                         <img className="lg:h-[48px] lg:w-[48px] h-[36px] w-[36px] mr-2" src={img} alt="" />
@@ -56,16 +121,30 @@ const Header = () => {
                         <div><h1 className="lg:hidden text-red-600 font-medium">Foodie Zone</h1></div>
                     </div>
                     <div className="navbar-end gap-4">
-                        <div className="hidden lg:flex gap-4">{linksEnd}</div>
+                        {
+                            user ?
+                                <>
+                                    <div className="mr-3 avatar tooltip tooltip-hover" >
+                                    </div>
+                                    <div className="dropdown">
+                                        <div tabIndex={0} role="button" className="btn tooltip tooltip-hover btn-accent btn-circle" data-tip={user.displayName}>
+                                            <img className="rounded-full" src={user.photoURL} />
+                                        </div>
+                                        <div>
+                                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 gap-y-1 shadow bg-base-100 rounded-box w-[135px]">
+                                                <li><a onClick={handleLogOut} className="btn w-[120px] h-[48px] bg-[red] hover:bg-[red] text-[#FFFFFF]">Log out</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </> :
+                                <>
+                                    <div className="hidden lg:flex gap-4">{linksEnd}</div>
+                                </>
+                        }
                         <label className="swap swap-rotate">
                             <input type="checkbox" onChange={handleToggle} className="theme-controller" />
-
-                            {/* sun icon */}
                             <img className="swap-off fill-current w-10 h-10" src={sun} alt="" />
-
-                            {/* moon icon */}
                             <img className="swap-on fill-current w-10 h-10" src={moon} alt="" />
-
                         </label>
                     </div>
                 </div>
