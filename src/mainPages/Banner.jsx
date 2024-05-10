@@ -4,13 +4,13 @@ import { NavLink } from "react-router-dom";
 
 const Banner = () => {
   return (
-    <section className="w-full px-8 py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 max-w-6xl mx-auto">
+    <section className="w-full px-8 py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 max-w-6xl mx-auto mt-5">
       <div>
         <span className="block mb-4 text-xs md:text-sm text-indigo-500 font-medium">
         Life is uncertain. Eat dessert first.
         </span>
         <h3 className="text-4xl md:text-6xl font-semibold">
-        Explore Culinary Excellence at Foodie Zone
+        Explore Culinary Excellence at <span className="text-red-500">Foodie Zone</span>
         </h3>
         <p className="text-base md:text-lg my-4 md:my-6">
         Indulge in a symphony of tastes at Foodie Zone, where passion meets palate. From sizzling steaks to delicate pastries, each dish is crafted with care to tantalize your senses and leave you craving for more. Join us for an unforgettable culinary journey.
