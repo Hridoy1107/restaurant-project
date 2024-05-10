@@ -10,7 +10,7 @@ const Routes = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <h1>hi to home</h1>,
+                element: <h1 className="text-slate-500 font-bold">hi to home</h1>,
             },
         ]
     },
