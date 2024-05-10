@@ -1,9 +1,44 @@
 import { AuthContext } from "../provider/AuthProvider";
 import { useContext } from "react";
+import Swal from 'sweetalert2'
 
 const Gallery = () => {
 
     const { user } = useContext(AuthContext);
+
+    const handleAddGallery = event => {
+        event.preventDefault();
+
+        const form = event.target;
+
+        const name = form.name.value;
+        const url = form.url.value;
+        const feedback = form.feedback.value;
+
+        const newGallery = { name, url, feedback }
+
+        console.log(newGallery);
+
+        fetch('http://localhost:5000/gallery', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newGallery)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Item Added Successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                }
+            })
+    }
 
     return (
         <>
@@ -29,7 +64,7 @@ const Gallery = () => {
                     <button className="btn btn-info" onClick={() => document.getElementById('my_modal_4').showModal()}>Add to Gallery</button>
                     <dialog id="my_modal_4" className="modal">
                         <div className="modal-box w-11/12 max-w-5xl">
-                            <form>
+                            <form onSubmit={handleAddGallery}>
                                 <div className="flex">
                                     <div className="form-control w-1/2">
                                         <label className="label">
@@ -55,7 +90,7 @@ const Gallery = () => {
                                     className="block w-full px-4 py-2 mt-2 bg-white rounded-md"
                                     type="text" name="feedback" placeholder="Description"
                                 ></textarea>
-                                <input type="submit" value="Add to Gallery" className="btn w-1/2 my-2 btn-warning btn-block" />
+                                <input type="submit" value="Add to Gallery" className="btn w-1/2 my-2 btn-warning" />
                             </form>
                             <div>
                                 <form method="dialog">
@@ -65,7 +100,7 @@ const Gallery = () => {
                         </div>
                     </dialog>
                 </div>
-            </div >
+            </div>
         </>
     );
 };
