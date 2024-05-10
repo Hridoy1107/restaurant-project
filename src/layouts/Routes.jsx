@@ -4,6 +4,7 @@ import ErrorPage from "../mainPages/ErrorPage";
 import Home from "../mainPages/Home";
 import Login from "../mainPages/Login";
 import Register from "../mainPages/Register";
+import Gallery from "../mainPages/Gallery";
 
 const Routes = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ const Routes = createBrowserRouter([
             {
                 path: '/all-foods',
                 element: <h1>Hi to all foods</h1>,
+            },
+            {
+                path: '/gallery',
+                element: <Gallery></Gallery>,
             },
         ]
     },

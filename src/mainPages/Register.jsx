@@ -170,7 +170,7 @@ const Register = () => {
                         </div>
                         <p className="text-center mt-4">Already have an account? <Link className="text-blue-600 font-bold" to="/login">Login</Link></p>
                     </div>
-                    <div className="hidden lg:flex lg:absolute mt-36 h-[200px]">
+                    <div className="hidden lg:flex lg:absolute mt-36 ml-10 h-[200px]">
                         <img src={img} alt="" />
                     </div>
                 </div>

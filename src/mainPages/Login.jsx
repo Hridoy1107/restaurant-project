@@ -92,7 +92,7 @@ const Login = () => {
         <>
             <div>
                 <div className="py-2 mt-8 rounded-xl flex">
-                    <div className="hidden lg:flex lg:absolute mt-32 h-[200px]">
+                    <div className="hidden lg:flex lg:absolute ml-8 mt-32 h-[200px]">
                         <img src={img} alt="" />
                     </div>
                     <div className="mx-auto w-full lg:w-1/2 my-4 rounded-xl bg-base-200">
