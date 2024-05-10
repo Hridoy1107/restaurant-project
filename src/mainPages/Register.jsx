@@ -37,8 +37,7 @@ const Register = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then(result => {
                 console.log(result.user);
-                navigate('/home');
-
+                navigate('/');
                 Swal.fire({
                     title: 'Success!',
                     text: 'User Registered Successfully',
@@ -63,6 +62,7 @@ const Register = () => {
         signInWithGoogle()
             .then(result => {
                 console.log(result.user)
+                navigate('/');
                 Swal.fire({
                     title: 'Success!',
                     text: 'User Registered Successfully',
@@ -79,6 +79,7 @@ const Register = () => {
         facebookLogin()
             .then(result => {
                 console.log(result.user)
+                navigate('/');
                 Swal.fire({
                     title: 'Success!',
                     text: 'User Registered Successfully',
@@ -95,6 +96,7 @@ const Register = () => {
         githubLogin()
             .then(result => {
                 console.log(result.user)
+                navigate('/');
                 Swal.fire({
                     title: 'Success!',
                     text: 'User Registered Successfully',

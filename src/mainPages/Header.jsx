@@ -127,8 +127,8 @@ const Header = () => {
                                     <div className="mr-3 avatar tooltip tooltip-hover" >
                                     </div>
                                     <div className="dropdown">
-                                        <div tabIndex={0} role="button" className="btn tooltip tooltip-hover btn-accent btn-circle" data-tip={user.displayName}>
-                                            <img className="rounded-full" src={user.photoURL} />
+                                        <div tabIndex={0} role="button" className="btn tooltip tooltip-hover btn-ghost btn-circle" data-tip={user.displayName}>
+                                            <img className="rounded-full h-full w-full" src={user.photoURL} />
                                         </div>
                                         <div>
                                             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 gap-y-1 shadow bg-base-100 rounded-box w-[135px]">
