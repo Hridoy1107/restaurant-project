@@ -15,7 +15,7 @@ const Banner = () => {
         <p className="text-base md:text-lg my-4 md:my-6">
         Indulge in a symphony of tastes at Foodie Zone, where passion meets palate. From sizzling steaks to delicate pastries, each dish is crafted with care to tantalize your senses and leave you craving for more. Join us for an unforgettable culinary journey.
         </p>
-        <NavLink to="/all-foods" className="bg-indigo-500 text-white font-medium py-2 px-4 btn rounded transition-all hover:bg-indigo-600 active:scale-95">
+        <NavLink to="/all-foods" className="bg-indigo-500 w-[140px] text-white font-medium py-2 px-4 btn rounded transition-all hover:bg-indigo-600 active:scale-95">
           All Foods
         </NavLink>
       </div>
