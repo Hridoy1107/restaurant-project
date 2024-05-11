@@ -22,7 +22,7 @@ const Home = () => {
         Top Food Selection
         </h3>
         </div>
-        <div>
+        <div className="my-2">
         <NavLink to="/all-foods" className="bg-indigo-500 text-white font-medium py-2 px-4 w-[160px] btn rounded transition-all hover:bg-indigo-600 active:scale-95">
           All Foods
         </NavLink>
