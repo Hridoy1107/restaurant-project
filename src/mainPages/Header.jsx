@@ -133,9 +133,9 @@ const Header = () => {
                                         <div>
                                             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 gap-y-1 shadow bg-base-100 rounded-box w-[135px]">
                                                 <li><a onClick={handleLogOut} className="btn w-[120px] h-[48px] bg-[red] hover:bg-[red] text-[#FFFFFF]">Log out</a></li>
-                                                <li><a className="btn btn-info w-[120px] h-[48px] text-[#FFFFFF]">My List</a></li>
-                                                <li><a className="btn btn-warning w-[120px] h-[48px] text-[#FFFFFF]">Add Food</a></li>
-                                                <li><a className="btn btn-primary w-[120px] h-[48px] text-[#FFFFFF]">My Cart</a></li>
+                                                <li><NavLink to="/my-list" className="btn btn-info w-[120px] h-[48px] text-[#FFFFFF]">My List</NavLink></li>
+                                                <li><NavLink to="/add-food" className="btn btn-warning w-[120px] h-[48px] text-[#FFFFFF]">Add Food</NavLink></li>
+                                                <li><NavLink to="/my-cart" className="btn btn-primary w-[120px] h-[48px] text-[#FFFFFF]">My Cart</NavLink></li>
                                             </ul>
                                         </div>
                                     </div>

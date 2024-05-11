@@ -77,8 +77,8 @@ const Gallery = () => {
                                     <h2 className="text-3xl lg:text-4xl mb-4 text-center font-semibold text-cyan-700">Add Item</h2>
                                     <p className="font-medium mb-2 mx-2">Share Your Culinary Experience</p>
                                     <form onSubmit={handleAddGallery}>
-                                        <div className="flex">
-                                            <div className="form-control w-1/2">
+                                        <div className="lg:flex mb-2">
+                                            <div className="form-control lg:w-1/2">
                                                 <label className="label">
                                                     <span className="label-text font-medium">Customer Name</span>
                                                 </label>
@@ -88,7 +88,7 @@ const Gallery = () => {
                                                         className="input input-bordered w-full" />
                                                 </label>
                                             </div>
-                                            <div className="form-control w-1/2 ml-4">
+                                            <div className="form-control lg:w-1/2 lg:ml-4">
                                                 <label className="label">
                                                     <span className="label-text font-medium">Food Image</span>
                                                 </label>
@@ -97,7 +97,7 @@ const Gallery = () => {
                                                 </label>
                                             </div>
                                         </div>
-                                        <label className="font-medium mt-2">
+                                        <label className="font-medium">
                                             Feedback
                                         </label>
                                         <textarea
