@@ -30,13 +30,13 @@ const GalleryCards = ({ gallery, setGallery }) => {
                     gallery.map(review => <GalleryCard key={review._id} review={review}></GalleryCard>)
                 }
             </div>
-            <div className="my-4">
+            {/* <div className="my-4">
                 <div className="join">
                     <button className="join-item btn">«</button>
                     <button className="join-item btn">Page</button>
                     <button className="join-item btn">»</button>
                 </div>
-            </div>
+            </div> */}
         </>
     );
 };
