@@ -20,7 +20,7 @@ const Gallery = () => {
         const feedback = form.feedback.value;
 
         const newGallery = { name, url, feedback }
-        
+
         console.log(newGallery);
 
         fetch('http://localhost:5000/gallery', {
@@ -71,9 +71,11 @@ const Gallery = () => {
                 <div className="mt-5">
                     {
                         user ? <>
-                        <button className="btn btn-info" onClick={() => document.getElementById('my_modal_4').showModal()}>Add to Gallery</button>
+                            <button className="btn btn-info" onClick={() => document.getElementById('my_modal_4').showModal()}>Add to Gallery</button>
                             <dialog id="my_modal_4" className="modal">
                                 <div className="modal-box w-11/12 max-w-5xl">
+                                    <h2 className="text-3xl lg:text-4xl mb-4 text-center font-semibold text-cyan-700">Add Item</h2>
+                                    <p className="font-medium mb-2 mx-2">Share Your Culinary Experience</p>
                                     <form onSubmit={handleAddGallery}>
                                         <div className="flex">
                                             <div className="form-control w-1/2">
@@ -113,7 +115,7 @@ const Gallery = () => {
                             </dialog>
                         </> :
                             <>
-                            <Link to="/login" className="btn btn-info" >Add to Gallery</Link>
+                                <Link to="/login" className="btn btn-info" >Add to Gallery</Link>
                             </>
                     }
                 </div>
