@@ -5,6 +5,8 @@ import Home from "../mainPages/Home";
 import Login from "../mainPages/Login";
 import Register from "../mainPages/Register";
 import Gallery from "../mainPages/Gallery";
+import PrivateRoute from "./PrivateRoute";
+import AddFood from "../privatePages/AddFood";
 
 const Routes = createBrowserRouter([
     {
@@ -31,6 +33,10 @@ const Routes = createBrowserRouter([
             {
                 path: '/gallery',
                 element: <Gallery></Gallery>,
+            },
+            {
+                path: '/add-food',
+                element: <PrivateRoute><AddFood></AddFood></PrivateRoute>,
             },
         ]
     },

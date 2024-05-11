@@ -144,10 +144,10 @@ const Header = () => {
                                     <div className="hidden lg:flex gap-4">{linksEnd}</div>
                                 </>
                         }
-                        <label className="swap swap-rotate">
+                        <label className="swap w-8 h-8 lg:w-10 lg:h-10 swap-rotate">
                             <input type="checkbox" onChange={handleToggle} className="theme-controller" />
-                            <img className="swap-off fill-current w-10 h-10" src={sun} alt="" />
-                            <img className="swap-on fill-current w-10 h-10" src={moon} alt="" />
+                            <img className="swap-off fill-current w-8 h-8 lg:w-10 lg:h-10" src={sun} alt="" />
+                            <img className="swap-on fill-current w-8 h-8 lg:w-10 lg:h-10" src={moon} alt="" />
                         </label>
                     </div>
                 </div>

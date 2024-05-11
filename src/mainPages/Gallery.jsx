@@ -73,14 +73,14 @@ const Gallery = () => {
                         user ? <>
                             <button className="btn btn-info" onClick={() => document.getElementById('my_modal_4').showModal()}>Add to Gallery</button>
                             <dialog id="my_modal_4" className="modal">
-                                <div className="modal-box w-11/12 max-w-5xl">
+                                <div className="modal-box w-11/12 max-w-5xl bg-slate-100">
                                     <h2 className="text-3xl lg:text-4xl mb-4 text-center font-semibold text-cyan-700">Add Item</h2>
-                                    <p className="font-medium mb-2 mx-2">Share Your Culinary Experience</p>
+                                    <p className="font-medium mb-2 mx-2 text-black">Share Your Culinary Experience</p>
                                     <form onSubmit={handleAddGallery}>
                                         <div className="lg:flex mb-2">
                                             <div className="form-control lg:w-1/2">
                                                 <label className="label">
-                                                    <span className="label-text font-medium">Customer Name</span>
+                                                    <span className="label-text font-medium text-black">Customer Name</span>
                                                 </label>
                                                 <label className="input-group">
                                                     <input type="text" defaultValue={user?.displayName} name="name"
@@ -90,18 +90,18 @@ const Gallery = () => {
                                             </div>
                                             <div className="form-control lg:w-1/2 lg:ml-4">
                                                 <label className="label">
-                                                    <span className="label-text font-medium">Food Image</span>
+                                                    <span className="label-text font-medium text-black">Food Image</span>
                                                 </label>
                                                 <label className="input-group">
                                                     <input type="text" name="url" placeholder="Photo Url" className="input input-bordered w-full" />
                                                 </label>
                                             </div>
                                         </div>
-                                        <label className="font-medium">
+                                        <label className="font-medium text-black">
                                             Feedback
                                         </label>
                                         <textarea
-                                            className="block w-full px-4 py-2 mt-2 bg-white text-black rounded-md"
+                                            className="block w-full px-4 py-2 mt-2 border rounded-md"
                                             type="text" name="feedback" placeholder="Description"
                                         ></textarea>
                                         <input type="submit" value="Add to Gallery" className="btn w-1/2 my-2 btn-warning" />
