@@ -1,16 +1,57 @@
 import { AuthContext } from "../provider/AuthProvider";
 import { useContext } from "react";
+import Swal from 'sweetalert2'
 
 const AddFood = () => {
 
     const { user } = useContext(AuthContext);
+
+    const handleAddFood = event => {
+        event.preventDefault();
+
+        const form = event.target;
+
+        const dishName = form.dishName.value;
+        const url = form.url.value;
+        const category = form.category.value;
+        const quantity = parseFloat(form.quantity.value);
+        const price = parseFloat(form.price.value);
+        const country = form.country.value;
+        const userName = form.userName.value;
+        const email = form.email.value;
+        const description = form.description.value;
+
+        const newFoods = { dishName, url, category, quantity, price, country, userName, email, description }
+
+        console.log(newFoods);
+
+        fetch('http://localhost:5000/foods', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newFoods)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if(data.insertedId){
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Dish Added Successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                      })
+                }
+            })
+    }
 
     return (
         <>
             <div className="bg-slate-100 py-12 lg:px-24 px-2 mt-10 rounded-2xl">
                 <h2 className="mb-6 text-3xl font-bold text-teal-700">Add a Dish</h2>
                 <p className="font-medium mb-2 mx-2 text-black">Expand Your Culinary Horizons. Add a Dish to Our Menu and Share Your Delicious Creations with the World!</p>
-                <form >
+                <form onSubmit={handleAddFood}>
                     <div className="lg:flex mb-2">
                         <div className="form-control lg:w-1/2">
                             <label className="label">
@@ -36,11 +77,14 @@ const AddFood = () => {
                             <label className="label">
                                 <span className="label-text font-medium text-black">Food Category</span>
                             </label>
-                            <label className="input-group">
-                                <input type="text" name="category"
-                                    placeholder="Category"
-                                    className="input input-bordered w-full" />
-                            </label>
+                            <select
+                                name="category"
+                                className="border p-2 rounded-md"
+                            >
+                                <option value="Appetizers">Appetizers</option>
+                                <option value="Main Course">Main Course</option>
+                                <option value="Desserts">Desserts</option>
+                            </select>
                         </div>
                         <div className="form-control lg:w-1/2 lg:ml-4">
                             <label className="label">
@@ -77,7 +121,7 @@ const AddFood = () => {
                                 <span className="label-text font-medium text-black">User Name</span>
                             </label>
                             <label className="input-group">
-                                <input type="text" defaultValue={user?.displayName} name="name"
+                                <input type="text" defaultValue={user?.displayName} name="userName"
                                     readOnly={true}
                                     className="input input-bordered w-full " />
                             </label>
@@ -92,17 +136,14 @@ const AddFood = () => {
                             </label>
                         </div>
                     </div>
-                    <div className="mb-8">
-                        <div className="form-control w-full">
-                            <label className="label">
-                                <span className="label-text text-black">Details</span>
-                            </label>
-                            <label className="input-group">
-                                <input type="text" name="details" placeholder="Place Details" className="input input-bordered w-full h-[100px]" />
-                            </label>
-                        </div>
-                    </div>
-                    <input type="submit" value="Add Place" className="btn btn-primary btn-block" />
+                    <label className="font-medium text-black">
+                        Description
+                    </label>
+                    <textarea
+                        className="block w-full px-4 py-2 mt-2 border rounded-md"
+                        type="text" name="description" placeholder="Description"
+                    ></textarea>
+                    <input type="submit" value="Add Food" className="btn btn-primary btn-block mt-4" />
                 </form>
             </div>
         </>
