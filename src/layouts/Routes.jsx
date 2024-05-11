@@ -7,6 +7,7 @@ import Register from "../mainPages/Register";
 import Gallery from "../mainPages/Gallery";
 import PrivateRoute from "./PrivateRoute";
 import AddFood from "../privatePages/AddFood";
+import AllFoods from "../mainPages/AllFoods";
 
 const Routes = createBrowserRouter([
     {
@@ -28,7 +29,7 @@ const Routes = createBrowserRouter([
             },
             {
                 path: '/all-foods',
-                element: <h1>Hi to all foods</h1>,
+                element: <AllFoods></AllFoods>,
             },
             {
                 path: '/gallery',
