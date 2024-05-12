@@ -48,6 +48,9 @@ const AllFoods = () => {
                     <h1 className="text-4xl font-semibold">Explore Our Delicious Menu Selections</h1>
                 </div>
             </div>
+            <div>
+                
+            </div>
             {
                 loading ? (
                     <span className="loading loading-spinner loading-lg"></span>

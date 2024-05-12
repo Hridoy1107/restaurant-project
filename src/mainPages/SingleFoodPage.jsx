@@ -74,7 +74,7 @@ const SingleFoodPage = () => {
                         <p className="my-6 max-w-xl text-center text-base leading-relaxed md:text-lg md:leading-relaxed">
                             {food.description}
                         </p>
-                        <Link to="/purchase" >
+                        <Link to={`/purchase-page/${id}`} >
                             <motion.button
                                 style={{
                                     border,
