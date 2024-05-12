@@ -8,6 +8,7 @@ import Gallery from "../mainPages/Gallery";
 import PrivateRoute from "./PrivateRoute";
 import AddFood from "../privatePages/AddFood";
 import AllFoods from "../mainPages/AllFoods";
+import SingleFoodPage from "../mainPages/SingleFoodPage";
 
 const Routes = createBrowserRouter([
     {
@@ -38,6 +39,11 @@ const Routes = createBrowserRouter([
             {
                 path: '/add-food',
                 element: <PrivateRoute><AddFood></AddFood></PrivateRoute>,
+            },
+            {
+                path: "/details/:id",
+                element: <SingleFoodPage></SingleFoodPage>,
+                loader: () => fetch('http://localhost:5000/foods'),
             },
         ]
     },

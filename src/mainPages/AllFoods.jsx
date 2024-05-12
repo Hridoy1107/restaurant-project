@@ -6,6 +6,7 @@ const AllFoods = () => {
 
     const navigate = useNavigate();
     const [foods, setFoods] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const url = 'http://localhost:5000/foods';
     useEffect(() => {
@@ -21,6 +22,9 @@ const AllFoods = () => {
                     navigate('/');
                 }
             })
+            .finally(() => {
+                setLoading(false);
+            });
     }, [navigate]);
 
     return (
@@ -44,11 +48,19 @@ const AllFoods = () => {
                     <h1 className="text-4xl font-semibold">Explore Our Delicious Menu Selections</h1>
                 </div>
             </div>
-            <div className="grid mt-6 lg:grid-cols-3 gap-4 lg:px-0 px-4">
-                {
-                    foods.map(food => <AllFoodsCard key={food._id} food={food}></AllFoodsCard>)
-                }
-            </div>
+            {
+                loading ? (
+                    <span className="loading loading-spinner loading-lg"></span>
+                ) :
+                    (
+                        <div className="grid mt-6 lg:grid-cols-3 gap-4 lg:px-0 px-4">
+                            {
+                                foods.map(food => <AllFoodsCard key={food._id} food={food}></AllFoodsCard>)
+                            }
+                        </div>
+                    )
+            }
+
         </>
     );
 };

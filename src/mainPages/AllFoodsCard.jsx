@@ -13,12 +13,12 @@ const AllFoodsCard = ({ food }) => {
                     <div className="p-6">
                         <div>
                             <span className={`text-xs font-medium ${category === 'Appetizers' &&
-                                'text-blue-500 bg-blue-100/60'
+                                'text-blue-500 '
                                 } ${category === 'Main Course' &&
-                                'text-emerald-500 bg-emerald-100/60'
+                                'text-emerald-500 '
                                 } ${category === 'Desserts' &&
-                                'text-red-500 bg-pink-100/60'
-                                }  rounded-xl`}>{category}</span>
+                                'text-red-500 '
+                                }  `}>{category}</span>
                             <h1 className="block mt-2 text-2xl font-semibold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600">{dishName}</h1>
                         </div>
                         <div className="mt-4">

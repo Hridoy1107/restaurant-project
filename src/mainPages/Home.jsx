@@ -6,7 +6,7 @@ const Home = () => {
 
     return (
         <>
-        <div>
+        <div className="border mt-4 rounded-xl">
             <Banner></Banner>
         </div>
         <div className="w-full lg:px-60 mt-2">

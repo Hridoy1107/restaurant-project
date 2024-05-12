@@ -1,4 +1,4 @@
-import { useEffect, } from 'react';
+import { useEffect, useState, } from 'react';
 import { useNavigate } from "react-router-dom";
 import GalleryCard from './GalleryCard';
 import PropTypes from 'prop-types';
@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 const GalleryCards = ({ gallery, setGallery }) => {
 
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
 
     const url = 'http://localhost:5000/gallery';
     useEffect(() => {
@@ -21,15 +22,25 @@ const GalleryCards = ({ gallery, setGallery }) => {
                     navigate('/');
                 }
             })
+            .finally(() => {
+                setLoading(false);
+            });
     }, [navigate, setGallery]);
 
     return (
         <>
-            <div className="grid lg:grid-cols-4 gap-4 lg:px-0 px-4">
-                {
-                    gallery.map(review => <GalleryCard key={review._id} review={review}></GalleryCard>)
-                }
-            </div>
+            {
+                loading ? (
+                    <span className="loading loading-spinner loading-lg"></span>
+                ) :
+                    (
+                        <div className="grid lg:grid-cols-4 gap-4 lg:px-0 px-4">
+                            {
+                                gallery.map(review => <GalleryCard key={review._id} review={review}></GalleryCard>)
+                            }
+                        </div>
+                    )
+            }
             {/* <div className="my-4">
                 <div className="join">
                     <button className="join-item btn">«</button>
