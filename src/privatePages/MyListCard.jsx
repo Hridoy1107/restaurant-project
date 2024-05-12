@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import Swal from "sweetalert2";
 
-const MyCartCard = ({cart, carts, setCarts}) => {
+const MyListCard = ({ food, foods, setFoods }) => {
 
-    const { _id, dishName, url, category, price, quantity, userName, date} = cart
+    const { _id, dishName, url, category, price, quantity } = food
 
     const handleDelete = _id => {
         console.log(_id);
@@ -19,7 +20,7 @@ const MyCartCard = ({cart, carts, setCarts}) => {
             if (result.isConfirmed) {
 
 
-                fetch(`http://localhost:5000/carts/${_id}`, {
+                fetch(`http://localhost:5000/foods/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -31,8 +32,8 @@ const MyCartCard = ({cart, carts, setCarts}) => {
                                 'Your Place has been deleted.',
                                 'success'
                             )
-                            const remaining = carts.filter(cart2 => cart2._id !== _id);
-                            setCarts(remaining);
+                            const remaining = foods.filter(food2 => food2._id !== _id);
+                            setFoods(remaining);
                         }
                     })
 
@@ -42,7 +43,7 @@ const MyCartCard = ({cart, carts, setCarts}) => {
 
     return (
         <>
-        <div>
+            <div>
                 <div className="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
                     <img className="object-cover w-full h-60" src={url} />
                     <div className="p-6">
@@ -62,18 +63,11 @@ const MyCartCard = ({cart, carts, setCarts}) => {
                                     <h1 className="mx-2 text-xl font-semibold text-gray-700 dark:text-gray-200">Price: $ <span className="text-yellow-400">{price}</span></h1>
                                 </div>
                                 <div>
-                                    <h1 className="lg:mx-2 text-xl font-semibold text-gray-700 dark:text-gray-200">Purchased Quantity: <span className=" text-green-600 dark:text-gray-300">{quantity}</span></h1>
+                                    <h1 className="lg:mx-2 text-xl font-semibold text-gray-700 dark:text-gray-200">Quantity: <span className=" text-green-600 dark:text-gray-300">{quantity}</span></h1>
                                 </div>
                             </div>
-                            <div >
-                                <div>
-                                    <h1 className="mx-2 text-xl font-semibold text-gray-700 dark:text-gray-200">Buying Date: <span>{date}</span></h1>
-                                </div>
-                                <div>
-                                    <h1 className="mx-2 text-xl font-semibold text-gray-700 dark:text-gray-200">Made By: <span className="text-red-600 dark:text-gray-300">{userName}</span></h1>
-                                </div>
-                            </div>
-                            <div>
+                            <div className="lg:flex lg:justify-around">
+                                <NavLink to={`/edit/${_id}`} className="bg-yellow-500 text-white font-medium py-2 px-4 w-[160px] mt-2 btn rounded transition-all hover:bg-yellow-600 active:scale-95">Edit</NavLink>
                                 <a onClick={() => handleDelete(_id)} className="bg-red-500 text-white font-medium py-2 px-4 w-[160px] mt-2 btn rounded transition-all hover:bg-red-600 active:scale-95">Delete</a>
                             </div>
                         </div>
@@ -84,10 +78,10 @@ const MyCartCard = ({cart, carts, setCarts}) => {
     );
 };
 
-MyCartCard.propTypes = {
-    cart: PropTypes.array.isRequired,
-    carts: PropTypes.array.isRequired,
-    setCarts: PropTypes.array.isRequired
+MyListCard.propTypes = {
+    food: PropTypes.array.isRequired,
+    foods: PropTypes.array.isRequired,
+    setFoods: PropTypes.array.isRequired
 };
 
-export default MyCartCard;
+export default MyListCard;

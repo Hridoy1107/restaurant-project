@@ -11,6 +11,8 @@ import AllFoods from "../mainPages/AllFoods";
 import SingleFoodPage from "../mainPages/SingleFoodPage";
 import PurchasePage from "../privatePages/PurchasePage";
 import MyCart from "../privatePages/MyCart";
+import MyList from "../privatePages/MyList";
+import Edit from "../privatePages/Edit";
 
 const Routes = createBrowserRouter([
     {
@@ -55,6 +57,15 @@ const Routes = createBrowserRouter([
             {
                 path: "/my-cart",
                 element: <PrivateRoute><MyCart></MyCart></PrivateRoute>,
+            },
+            {
+                path: "/my-list",
+                element: <PrivateRoute><MyList></MyList></PrivateRoute>,
+            },
+            {
+                path: "/edit/:id",
+                element: <PrivateRoute><Edit></Edit></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/foods/${params.id}`),
             },
         ]
     },
