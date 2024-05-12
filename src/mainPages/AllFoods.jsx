@@ -1,14 +1,16 @@
 import { useEffect, useState, } from 'react';
 import { useNavigate } from "react-router-dom";
 import AllFoodsCard from './AllFoodsCard';
+import { FaSearch } from "react-icons/fa";
 
 const AllFoods = () => {
 
     const navigate = useNavigate();
     const [foods, setFoods] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState('');
 
-    const url = 'http://localhost:5000/foods';
+    const url = `http://localhost:5000/foods?searchTerm=${searchTerm}`;
     useEffect(() => {
         fetch(url, {
             method: 'GET'
@@ -25,7 +27,18 @@ const AllFoods = () => {
             .finally(() => {
                 setLoading(false);
             });
-    }, [navigate]);
+    }, [navigate, url]);
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const searchValue = formData.get('search');
+        setSearchTerm(searchValue);
+    };
+
+    const handleReset = () => {
+        setSearchTerm('');
+    };
 
     return (
         <>
@@ -48,8 +61,17 @@ const AllFoods = () => {
                     <h1 className="text-4xl font-semibold">Explore Our Delicious Menu Selections</h1>
                 </div>
             </div>
-            <div>
-                
+            <div className="my-4 lg:px-20">
+                <form onSubmit={handleSearch}>
+                    <label className="lg:mx-80 mx-4 input input-bordered flex items-center gap-2">
+                        <input type="text" className="grow"
+                        name="search" placeholder="Search a Dish" />
+                        <button className="btn btn-ghost h-12 w-28"><FaSearch /></button>
+                    </label>
+                </form>
+                <div className="my-2">
+                <button onClick={handleReset} className="btn btn-warning h-12 w-28">Reset</button>
+                </div>
             </div>
             {
                 loading ? (

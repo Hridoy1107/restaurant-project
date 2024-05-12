@@ -43,7 +43,7 @@ const PurchasePage = () => {
               });
             return;
         }
-        if (quantity <= minimum) {
+        if (quantity <= minimum ) {
             Swal.fire({
                 title: 'Warning!',
                 text: 'Select a real number',
@@ -61,7 +61,18 @@ const PurchasePage = () => {
                 confirmButtonText: 'Okay'
               });
               return;
-        } 
+        }
+        
+        if (quantity.trim() === "") {
+            Swal.fire({
+                title: 'Warning!',
+                text: 'Please enter a quantity',
+                icon: 'error',
+                confirmButtonText: 'Okay'
+            });
+            return;
+        }
+
         if (email1 === user.email) {
             Swal.fire({
                 title: 'Warning!',

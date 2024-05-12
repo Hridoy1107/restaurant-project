@@ -5,13 +5,16 @@ import {
     motion,
     animate,
 } from "framer-motion";
-import { useEffect} from "react";
+import { useContext, useEffect} from "react";
 import { FiArrowRight } from "react-icons/fi";
+import { AuthContext } from "../provider/AuthProvider";
+import Swal from 'sweetalert2';
 
 const COLORS_TOP = ["#13FFAA", "#1E67C6", "#CE84CF", "#DD335C"];
 
 const SingleFoodPage = () => {
 
+    const { user } = useContext(AuthContext);
     const foods = useLoaderData();
     const { id } = useParams();
     const food = foods.find(food => food._id === id);
@@ -31,6 +34,18 @@ const SingleFoodPage = () => {
     const backgroundImage = useMotionTemplate`radial-gradient(125% 125% at 50% 0%, #020617 50%, ${color})`;
     const border = useMotionTemplate`1px solid ${color}`;
     const boxShadow = useMotionTemplate`0px 4px 24px ${color}`;
+
+    const userMail = user.email
+    const disableLink = food.quantity === 0 || userMail === food.email;
+    const handleClickDisabledLink = () => {
+        Swal.fire({
+            title: 'Warning!',
+            text: 'This item is either out of stock or belongs to you!',
+            icon: 'error',
+            confirmButtonText: 'Okay'
+          });
+        return;
+    };
 
     return (
         <>
@@ -78,7 +93,7 @@ const SingleFoodPage = () => {
                         <h1 className=" bg-gradient-to-br mb-4 from-white to-gray-400 bg-clip-text text-center text-xl font-medium leading-tight text-transparent md:text-xl md:leading-tight">
                             Food Quantity: <span>{food.quantity === 0 ? 'Out of Stock' : food.quantity}</span>
                         </h1>
-                        <Link to={`/purchase-page/${id}`} >
+                        {disableLink ? (
                             <motion.button
                                 style={{
                                     border,
@@ -91,11 +106,31 @@ const SingleFoodPage = () => {
                                     scale: 0.985,
                                 }}
                                 className="group relative flex w-fit items-center gap-1.5 rounded-full bg-gray-950/10 px-4 py-2 text-gray-50 transition-colors hover:bg-gray-950/50"
+                                onClick={handleClickDisabledLink}
                             >
                                 Purchase
                                 <FiArrowRight className="transition-transform group-hover:-rotate-45 group-active:-rotate-12" />
                             </motion.button>
-                        </Link>
+                        ) : (
+                            <Link to={`/purchase-page/${id}`} >
+                                <motion.button
+                                    style={{
+                                        border,
+                                        boxShadow,
+                                    }}
+                                    whileHover={{
+                                        scale: 1.015,
+                                    }}
+                                    whileTap={{
+                                        scale: 0.985,
+                                    }}
+                                    className="group relative flex w-fit items-center gap-1.5 rounded-full bg-gray-950/10 px-4 py-2 text-gray-50 transition-colors hover:bg-gray-950/50"
+                                >
+                                    Purchase
+                                    <FiArrowRight className="transition-transform group-hover:-rotate-45 group-active:-rotate-12" />
+                                </motion.button>
+                            </Link>
+                        )}
                     </div>
                 </motion.section>
             </div>
