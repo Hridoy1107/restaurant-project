@@ -27,7 +27,11 @@ const AllFoodsCard = ({ food }) => {
                                     <h1 className="mx-2 text-xl font-semibold text-gray-700 dark:text-gray-200">Price: $ <span className="text-yellow-400">{price}</span></h1>
                                 </div>
                                 <div>
-                                    <h1 className="mx-2 text-xl font-semibold text-gray-700 dark:text-gray-200">Quantity: <span className=" text-green-600 dark:text-gray-300">{quantity}</span></h1>
+                                {quantity === 0 ? (
+                                    <h1 className="mx-2 text-xl font-semibold text-red-500 dark:text-gray-200">Out of Stock</h1>
+                                ) : (
+                                    <h1 className="mx-2 text-xl font-semibold text-gray-700 dark:text-gray-200">Quantity: <span className="text-green-600 dark:text-gray-300">{quantity}</span></h1>
+                                )}
                                 </div>
                             </div>
                             <div>

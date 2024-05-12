@@ -25,10 +25,11 @@ const PurchasePage = () => {
 
         const url = food.url;
         const userName = food.userName;
+        const email1 = food.email;
         const dishName = form.dishName.value;
         const quantity = parseFloat(form.quantity.value);
         const price = parseFloat(form.price.value);
-        const BuyerName = form.BuyerName.value;
+        const buyerName = form.buyerName.value;
         const email = form.email.value;
         const date = form.date.value;
         const foodId = food._id;
@@ -52,7 +53,26 @@ const PurchasePage = () => {
             return;
         }
 
-        const newCarts = { dishName, url, userName, quantity, price, BuyerName, email, date, foodId }
+        if (quantity === 0) {
+            Swal.fire({
+                title: 'Warning!',
+                text: 'This item is out of stock',
+                icon: 'error',
+                confirmButtonText: 'Okay'
+              });
+              return;
+        } 
+        if (email1 === user.email) {
+            Swal.fire({
+                title: 'Warning!',
+                text: 'You can not purchase your own dish',
+                icon: 'error',
+                confirmButtonText: 'Okay'
+              });
+              return;
+        }
+
+        const newCarts = { dishName, url, userName, quantity, price, buyerName, email, date, foodId }
 
         console.log(newCarts);
 
@@ -114,7 +134,7 @@ const PurchasePage = () => {
                 <div className="lg:flex mb-2">
                     <div className="form-control lg:w-1/2">
                         <label className="label">
-                            <span className="label-text font-medium text-black">Food Quantity ({food.quantity})</span>
+                            <span className="label-text font-medium text-black">Food Quantity ({food.quantity === 0 ? 'Out of Stock' : food.quantity}) </span>
                         </label>
                         <label className="input-group">
                             <input type="text" name="quantity" placeholder="Quantity" className="input input-bordered w-full " max={maxQuantity} />
@@ -135,7 +155,7 @@ const PurchasePage = () => {
                             <span className="label-text font-medium text-black">Buyer Name</span>
                         </label>
                         <label className="input-group">
-                            <input type="text" name="BuyerName" defaultValue={user?.displayName} 
+                            <input type="text" name="buyerName" defaultValue={user?.displayName} 
                                     readOnly={true}
                                 className="input input-bordered w-full " />
                         </label>
@@ -150,7 +170,7 @@ const PurchasePage = () => {
                         </label>
                     </div>
                 </div>
-                <input type="submit" value="Add to Cart" className="btn btn-primary btn-block mt-4" />
+                <input type="submit" value="Add to Cart" className="btn btn-primary btn-block mt-4" disabled={food.quantity === 0} />
             </form>
         </div>
             

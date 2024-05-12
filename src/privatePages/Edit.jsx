@@ -7,7 +7,7 @@ const Edit = () => {
 
     const { user } = useContext(AuthContext);
     const foods = useLoaderData();
-    const { _id, dishName, url, quantity, price, country, userName, email, description  } = foods
+    const { _id, dishName, url, quantity, price, country, description  } = foods
 
 
     const handleEdit = event => {
@@ -150,7 +150,7 @@ const Edit = () => {
                         className="block w-full px-4 py-2 mt-2 border rounded-md"
                         type="text" name="description" placeholder="Description" defaultValue={description}
                     ></textarea>
-                    <input type="submit" value="Add Food" className="btn btn-primary btn-block mt-4" />
+                    <input type="submit" value="Edit Dish" className="btn btn-primary btn-block mt-4" />
                 </form>
             </div>
         </>

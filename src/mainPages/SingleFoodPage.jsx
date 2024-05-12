@@ -5,7 +5,7 @@ import {
     motion,
     animate,
 } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect} from "react";
 import { FiArrowRight } from "react-icons/fi";
 
 const COLORS_TOP = ["#13FFAA", "#1E67C6", "#CE84CF", "#DD335C"];
@@ -15,6 +15,7 @@ const SingleFoodPage = () => {
     const foods = useLoaderData();
     const { id } = useParams();
     const food = foods.find(food => food._id === id);
+
 
     const color = useMotionValue(COLORS_TOP[0]);
 
@@ -74,6 +75,9 @@ const SingleFoodPage = () => {
                         <p className="my-6 max-w-xl text-center text-base leading-relaxed md:text-lg md:leading-relaxed">
                             {food.description}
                         </p>
+                        <h1 className=" bg-gradient-to-br mb-4 from-white to-gray-400 bg-clip-text text-center text-xl font-medium leading-tight text-transparent md:text-xl md:leading-tight">
+                            Food Quantity: <span>{food.quantity === 0 ? 'Out of Stock' : food.quantity}</span>
+                        </h1>
                         <Link to={`/purchase-page/${id}`} >
                             <motion.button
                                 style={{
