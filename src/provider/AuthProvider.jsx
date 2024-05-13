@@ -40,8 +40,17 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, githubProvider);
     };
 
-    const logOut = () => {
+    const logOut = async() => {
         setLoading(true);
+        try {
+            await fetch('http://localhost:5000/logout', {
+                method: 'POST',
+                credentials: 'include'
+            });
+            await signOut(auth);
+        } catch (error) {
+            console.error('Logout failed:', error);
+        }
         return signOut(auth);
     }
 

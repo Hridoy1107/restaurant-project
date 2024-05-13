@@ -5,6 +5,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import { FaEye, FaEyeSlash, FaGoogle, FaFacebook, FaGithub } from 'react-icons/fa';
 import Swal from 'sweetalert2'
 import img from '../assets/t.webp'
+import axios from "axios";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -18,18 +19,24 @@ const Login = () => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(email, password);
 
 
         signInUser(email, password)
             .then(result => {
                 console.log(result.user)
+                const user = {email};
+                axios.post('http://localhost:5000/jwt' , user, {withCredentials: true})
+                .then(res => {
+                    console.log(res.data);
+                    if(res.data.success){
+                        if (from === "/gallery") {
+                            navigate("/gallery", { replace: true });
+                        } else {
+                            navigate(from, { replace: true });
+                        }
+                    }
+                })
                 e.target.reset();
-                if (from === "/gallery") {
-                    navigate("/gallery", { replace: true });
-                } else {
-                    navigate(from, { replace: true });
-                }
                 Swal.fire({
                     title: 'Success!',
                     text: 'User Login Successfully',
@@ -47,11 +54,19 @@ const Login = () => {
         signInWithGoogle()
             .then(result => {
                 console.log(result.user)
-                if (from === "/gallery") {
-                    navigate("/gallery", { replace: true });
-                } else {
-                    navigate(from, { replace: true });
-                }
+                const email = result.user.email;
+                const user = {email};
+                axios.post('http://localhost:5000/jwt' , user, {withCredentials: true})
+                .then(res => {
+                    console.log(res.data);
+                    if(res.data.success){
+                        if (from === "/gallery") {
+                            navigate("/gallery", { replace: true });
+                        } else {
+                            navigate(from, { replace: true });
+                        }
+                    }
+                })
                 Swal.fire({
                     title: 'Success!',
                     text: 'User Login Successfully',
@@ -68,11 +83,19 @@ const Login = () => {
         facebookLogin()
             .then(result => {
                 console.log(result.user)
-                if (from === "/gallery") {
-                    navigate("/gallery", { replace: true });
-                } else {
-                    navigate(from, { replace: true });
-                }
+                const email = result.user.email;
+                const user = {email};
+                axios.post('http://localhost:5000/jwt' , user, {withCredentials: true})
+                .then(res => {
+                    console.log(res.data);
+                    if(res.data.success){
+                        if (from === "/gallery") {
+                            navigate("/gallery", { replace: true });
+                        } else {
+                            navigate(from, { replace: true });
+                        }
+                    }
+                })
                 Swal.fire({
                     title: 'Success!',
                     text: 'User Login Successfully',
@@ -89,11 +112,19 @@ const Login = () => {
         githubLogin()
             .then(result => {
                 console.log(result.user)
-                if (from === "/gallery") {
-                    navigate("/gallery", { replace: true });
-                } else {
-                    navigate(from, { replace: true });
-                }
+                const email = result.user.email;
+                const user = {email};
+                axios.post('http://localhost:5000/jwt' , user, {withCredentials: true})
+                .then(res => {
+                    console.log(res.data);
+                    if(res.data.success){
+                        if (from === "/gallery") {
+                            navigate("/gallery", { replace: true });
+                        } else {
+                            navigate(from, { replace: true });
+                        }
+                    }
+                })
                 Swal.fire({
                     title: 'Success!',
                     text: 'User Login Successfully',

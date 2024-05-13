@@ -7,6 +7,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import img from '../assets/tl.webp'
+import axios from "axios";
 
 const Register = () => {
     const [registerError, setRegisterError] = useState('');
@@ -36,6 +37,8 @@ const Register = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then(result => {
                 console.log(result.user);
+                const user = {email};
+                axios.post('http://localhost:5000/jwt' , user, {withCredentials: true})
                 navigate('/');
                 Swal.fire({
                     title: 'Success!',
@@ -61,6 +64,9 @@ const Register = () => {
         signInWithGoogle()
             .then(result => {
                 console.log(result.user)
+                const email = result.user.email;
+                const user = {email};
+                axios.post('http://localhost:5000/jwt' , user, {withCredentials: true})
                 navigate('/');
                 Swal.fire({
                     title: 'Success!',
@@ -78,6 +84,9 @@ const Register = () => {
         facebookLogin()
             .then(result => {
                 console.log(result.user)
+                const email = result.user.email;
+                const user = {email};
+                axios.post('http://localhost:5000/jwt' , user, {withCredentials: true})
                 navigate('/');
                 Swal.fire({
                     title: 'Success!',
@@ -95,6 +104,9 @@ const Register = () => {
         githubLogin()
             .then(result => {
                 console.log(result.user)
+                const email = result.user.email;
+                const user = {email};
+                axios.post('http://localhost:5000/jwt' , user, {withCredentials: true})
                 navigate('/');
                 Swal.fire({
                     title: 'Success!',

@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { AuthContext } from "../provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import MyCartCard from './MyCartCard';
+import axios from 'axios';
 
 const MyCart = () => {
 
@@ -12,21 +13,23 @@ const MyCart = () => {
 
     const url = `http://localhost:5000/carts?email=${user?.email}`;
     useEffect(() => {
-        fetch(url, {
-            method: 'GET'
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (!data.error) {
-                    setCarts(data)
-                }
-                else {
+        const fetchData = async () => {
+            try {
+                const res = await axios.get(url, {withCredentials: true});
+                if (res.status === 200) {
+                    setCarts(res.data);
+                } else {
                     navigate('/');
                 }
-            })
-            .finally(() => {
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                navigate('/');
+            } finally {
                 setLoading(false);
-            });
+            }
+        };
+        
+        fetchData();
     }, [url, navigate]);
 
     return (

@@ -7,25 +7,41 @@ const GalleryCards = ({ gallery, setGallery }) => {
 
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(1);
+    const limit = 8;
 
-    const url = 'http://localhost:5000/gallery';
-    useEffect(() => {
-        fetch(url, {
-            method: 'GET'
-        })
+    const fetchGallery = () => {
+        setLoading(true);
+        const url = `http://localhost:5000/gallery?page=${page}&limit=${limit}`;
+        fetch(url)
             .then(res => res.json())
             .then(data => {
                 if (!data.error) {
-                    setGallery(data)
-                }
-                else {
+                    setGallery(data);
+                } else {
                     navigate('/');
                 }
             })
             .finally(() => {
                 setLoading(false);
             });
-    }, [navigate, setGallery]);
+    };
+
+    useEffect(() => {
+        fetchGallery();
+    }, [page, navigate, setGallery]);
+
+    const nextPage = () => {
+        setPage(page + 1);
+    };
+
+    const prevPage = () => {
+        if (page > 1) {
+            setPage(page - 1);
+        }
+    };
+
+    const isLastPage = gallery.length < limit;
 
     return (
         <>
@@ -41,13 +57,19 @@ const GalleryCards = ({ gallery, setGallery }) => {
                         </div>
                     )
             }
-            {/* <div className="my-4">
-                <div className="join">
-                    <button className="join-item btn">«</button>
-                    <button className="join-item btn">Page</button>
-                    <button className="join-item btn">»</button>
+            <div className="my-4">
+            <div className="join">
+                    <button className="join-item btn" disabled={page === 1}  onClick={prevPage}>
+                        «
+                    </button>
+                    <button className="join-item btn">
+                        Page {page}
+                    </button>
+                    <button className="join-item btn" disabled={isLastPage} onClick={nextPage}>
+                        »
+                    </button>
                 </div>
-            </div> */}
+            </div>
         </>
     );
 };

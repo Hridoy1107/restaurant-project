@@ -138,7 +138,7 @@ const PurchasePage = () => {
                             <span className="label-text font-medium text-black">Food Quantity ({food.quantity === 0 ? 'Out of Stock' : food.quantity}) </span>
                         </label>
                         <label className="input-group">
-                            <input type="text" name="quantity" placeholder="Quantity" className="input input-bordered w-full " max={maxQuantity} />
+                            <input type="text" name="quantity" placeholder="Quantity" className="input input-bordered w-full " required max={maxQuantity} />
                         </label>
                     </div>
                     <div className="form-control lg:w-1/2 lg:ml-4">
