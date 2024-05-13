@@ -6,6 +6,7 @@ const TopFoods = () => {
 
     const [foods, setFoods] = useState([]);
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
 
     const url = 'http://localhost:5000/foods?top=true';
     useEffect(() => {
@@ -21,15 +22,25 @@ const TopFoods = () => {
                     navigate('/');
                 }
             })
+            .finally(() => {
+                setLoading(false);
+            });
     }, [url, navigate]);
 
     return (
         <>
-            <div className="grid mt-6 lg:grid-cols-3 gap-4 lg:px-0 px-4">
-                {
-                    foods.map(food => <TopFoodsCard key={food._id} food={food}></TopFoodsCard>)
-                }
-            </div>
+            {
+                loading ? (
+                    <span className="loading loading-spinner loading-lg"></span>
+                ) : (
+                    <div className="grid mt-6 lg:grid-cols-3 gap-4 lg:px-0 px-4">
+                        {
+                            foods.map(food => <TopFoodsCard key={food._id} food={food}></TopFoodsCard>)
+                        }
+                    </div>
+                )
+            }
+
         </>
     );
 };

@@ -62,16 +62,6 @@ const PurchasePage = () => {
               });
               return;
         }
-        
-        if (quantity.trim() === "") {
-            Swal.fire({
-                title: 'Warning!',
-                text: 'Please enter a quantity',
-                icon: 'error',
-                confirmButtonText: 'Okay'
-            });
-            return;
-        }
 
         if (email1 === user.email) {
             Swal.fire({

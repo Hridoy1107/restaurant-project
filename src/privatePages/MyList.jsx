@@ -8,6 +8,7 @@ const MyList = () => {
     const { user } = useContext(AuthContext);
     const [foods, setFoods] = useState([]);
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
 
     const url = `http://localhost:5000/foods?email=${user?.email}`;
     useEffect(() => {
@@ -23,6 +24,9 @@ const MyList = () => {
                     navigate('/');
                 }
             })
+            .finally(() => {
+                setLoading(false);
+            });
     }, [url, navigate]);
 
     return (
@@ -30,11 +34,17 @@ const MyList = () => {
             <div className="my-4">
                 <h2 className="text-3xl lg:text-4xl mb-4 text-center font-semibold text-cyan-700">My Added List</h2>
             </div>
-            <div className="grid mt-6 lg:grid-cols-3 gap-4 lg:px-0 px-4">
+            {
+                loading ? (
+                    <span className="loading loading-spinner loading-lg"></span>
+                ) : (
+                    <div className="grid mt-6 lg:grid-cols-3 gap-4 lg:px-0 px-4">
                 {
                     foods.map(food => <MyListCard key={food._id} food={food} foods={foods} setFoods={setFoods}></MyListCard>)
                 }
             </div>
+                )
+            }
         </>
     );
 };
