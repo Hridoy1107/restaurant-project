@@ -1,7 +1,7 @@
 import { AuthContext } from "../provider/AuthProvider";
 import { useContext, useState } from "react";
 import Swal from 'sweetalert2'
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import GalleryCards from './GalleryCards'
 
 const Gallery = () => {
@@ -9,6 +9,7 @@ const Gallery = () => {
     const { user } = useContext(AuthContext);
 
     const [gallery, setGallery] = useState([]);
+    const location = useLocation();
 
     const handleAddGallery = event => {
         event.preventDefault();
@@ -115,7 +116,7 @@ const Gallery = () => {
                             </dialog>
                         </> :
                             <>
-                                <Link to="/login" className="btn btn-info" >Add to Gallery</Link>
+                                <Link to="/login" state={{from: location}} className="btn btn-info" >Add to Gallery</Link>
                             </>
                     }
                 </div>

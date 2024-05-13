@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { FaEye, FaEyeSlash, FaGoogle, FaFacebook, FaGithub } from 'react-icons/fa';
 import Swal from 'sweetalert2'
@@ -10,6 +10,9 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { signInUser, signInWithGoogle, facebookLogin, githubLogin } = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
+    console.log(location);
+    const from = location.state?.from?.pathname || '/';
 
     const handleLogin = e => {
         e.preventDefault();
@@ -22,7 +25,11 @@ const Login = () => {
             .then(result => {
                 console.log(result.user)
                 e.target.reset();
-                navigate('/');
+                if (from === "/gallery") {
+                    navigate("/gallery", { replace: true });
+                } else {
+                    navigate(from, { replace: true });
+                }
                 Swal.fire({
                     title: 'Success!',
                     text: 'User Login Successfully',
@@ -40,7 +47,11 @@ const Login = () => {
         signInWithGoogle()
             .then(result => {
                 console.log(result.user)
-                navigate('/');
+                if (from === "/gallery") {
+                    navigate("/gallery", { replace: true });
+                } else {
+                    navigate(from, { replace: true });
+                }
                 Swal.fire({
                     title: 'Success!',
                     text: 'User Login Successfully',
@@ -57,7 +68,11 @@ const Login = () => {
         facebookLogin()
             .then(result => {
                 console.log(result.user)
-                navigate('/');
+                if (from === "/gallery") {
+                    navigate("/gallery", { replace: true });
+                } else {
+                    navigate(from, { replace: true });
+                }
                 Swal.fire({
                     title: 'Success!',
                     text: 'User Login Successfully',
@@ -74,7 +89,11 @@ const Login = () => {
         githubLogin()
             .then(result => {
                 console.log(result.user)
-                navigate('/');
+                if (from === "/gallery") {
+                    navigate("/gallery", { replace: true });
+                } else {
+                    navigate(from, { replace: true });
+                }
                 Swal.fire({
                     title: 'Success!',
                     text: 'User Login Successfully',

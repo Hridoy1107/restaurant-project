@@ -20,7 +20,6 @@ const Register = () => {
         const password = e.target.password.value;
         const photo = e.target.photo.value;
 
-        console.log(name, email, password, photo);
 
         setRegisterError('');
 
