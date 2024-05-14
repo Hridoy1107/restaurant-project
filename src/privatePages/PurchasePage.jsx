@@ -77,7 +77,7 @@ const PurchasePage = () => {
 
         console.log(newCarts);
 
-        fetch('http://localhost:5000/carts', {
+        fetch(' https://restaurant-server-theta.vercel.app/carts', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

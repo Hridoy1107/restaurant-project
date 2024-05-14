@@ -25,7 +25,7 @@ const AddFood = () => {
 
         console.log(newFoods);
 
-        fetch('http://localhost:5000/foods', {
+        fetch(' https://restaurant-server-theta.vercel.app/foods', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

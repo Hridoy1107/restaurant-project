@@ -10,12 +10,15 @@ const MyCart = () => {
     const [carts, setCarts] = useState([]);
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(1);
+    const limit = 6;
 
-    const url = `http://localhost:5000/carts?email=${user?.email}`;
     useEffect(() => {
         const fetchData = async () => {
+            setLoading(true);
             try {
-                const res = await axios.get(url, {withCredentials: true});
+                const url = ` https://restaurant-server-theta.vercel.app/carts?email=${user.email}&page=${page}&limit=${limit}`;
+                const res = await axios.get(url, { withCredentials: true });
                 if (res.status === 200) {
                     setCarts(res.data);
                 } else {
@@ -28,9 +31,23 @@ const MyCart = () => {
                 setLoading(false);
             }
         };
-        
-        fetchData();
-    }, [url, navigate]);
+
+        if (user?.email) {
+            fetchData();
+        }
+    }, [page, user, navigate]);
+
+    const nextPage = () => {
+        setPage(page + 1);
+    };
+
+    const prevPage = () => {
+        if (page > 1) {
+            setPage(page - 1);
+        }
+    };
+
+    const isLastPage = carts.length < limit;
 
     return (
         <>
@@ -47,7 +64,19 @@ const MyCart = () => {
                         }
                     </div>)
             }
-
+            <div className="my-4">
+            <div className="join">
+                    <button className="join-item btn" disabled={page === 1}  onClick={prevPage}>
+                        «
+                    </button>
+                    <button className="join-item btn">
+                        Page {page}
+                    </button>
+                    <button className="join-item btn" disabled={isLastPage} onClick={nextPage}>
+                        »
+                    </button>
+                </div>
+            </div>
         </>
     );
 };

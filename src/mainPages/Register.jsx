@@ -38,7 +38,7 @@ const Register = () => {
             .then(result => {
                 console.log(result.user);
                 const user = {email};
-                axios.post('http://localhost:5000/jwt' , user, {withCredentials: true})
+                axios.post(' https://restaurant-server-theta.vercel.app/jwt' , user, {withCredentials: true})
                 navigate('/');
                 Swal.fire({
                     title: 'Success!',
@@ -66,7 +66,7 @@ const Register = () => {
                 console.log(result.user)
                 const email = result.user.email;
                 const user = {email};
-                axios.post('http://localhost:5000/jwt' , user, {withCredentials: true})
+                axios.post(' https://restaurant-server-theta.vercel.app/jwt' , user, {withCredentials: true})
                 navigate('/');
                 Swal.fire({
                     title: 'Success!',
@@ -86,7 +86,7 @@ const Register = () => {
                 console.log(result.user)
                 const email = result.user.email;
                 const user = {email};
-                axios.post('http://localhost:5000/jwt' , user, {withCredentials: true})
+                axios.post(' https://restaurant-server-theta.vercel.app/jwt' , user, {withCredentials: true})
                 navigate('/');
                 Swal.fire({
                     title: 'Success!',
@@ -106,7 +106,7 @@ const Register = () => {
                 console.log(result.user)
                 const email = result.user.email;
                 const user = {email};
-                axios.post('http://localhost:5000/jwt' , user, {withCredentials: true})
+                axios.post(' https://restaurant-server-theta.vercel.app/jwt' , user, {withCredentials: true})
                 navigate('/');
                 Swal.fire({
                     title: 'Success!',

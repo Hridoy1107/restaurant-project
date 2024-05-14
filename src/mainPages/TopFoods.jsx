@@ -8,7 +8,7 @@ const TopFoods = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
 
-    const url = 'http://localhost:5000/foods?top=true';
+    const url = ' https://restaurant-server-theta.vercel.app/foods?top=true';
     useEffect(() => {
         fetch(url, {
             method: 'GET'

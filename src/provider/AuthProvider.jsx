@@ -43,7 +43,7 @@ const AuthProvider = ({ children }) => {
     const logOut = async() => {
         setLoading(true);
         try {
-            await fetch('http://localhost:5000/logout', {
+            await fetch(' https://restaurant-server-theta.vercel.app/logout', {
                 method: 'POST',
                 credentials: 'include'
             });

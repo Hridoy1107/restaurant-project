@@ -19,7 +19,7 @@ const MyCartCard = ({cart, carts, setCarts}) => {
             if (result.isConfirmed) {
 
 
-                fetch(`http://localhost:5000/carts/${_id}`, {
+                fetch(` https://restaurant-server-theta.vercel.app/carts/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -28,7 +28,7 @@ const MyCartCard = ({cart, carts, setCarts}) => {
                         if (data.deletedCount > 0) {
                             Swal.fire(
                                 'Deleted!',
-                                'Your Place has been deleted.',
+                                'Your Dish has been deleted.',
                                 'success'
                             )
                             const remaining = carts.filter(cart2 => cart2._id !== _id);

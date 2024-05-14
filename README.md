@@ -1,8 +1,13 @@
-# React + Vite
+# Foodie Zone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live Link: https://foodie-zone-1107.netlify.app
 
-Currently, two official plugins are available:
+1. Responsive Design: The website is fully responsive, optimized for both laptops and large mobile devices (L-mobile), ensuring a seamless user experience across different screen sizes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2. Interactive Gallery: Users can explore a gallery page and add reviews of food items enhancing the interactive and visual appeal of the site.
+
+3. E-commerce Functionality: Customers can add food items to their cart, proceed with purchases, and sellers can list their food items for sale, making the website a comprehensive platform for both buyers and sellers.
+
+4. Secure Authentication: User privacy and security are prioritized with Google Authenticator integration for two-factor authentication and token-based authentication for secure data handling and access control.
+
+5. Data Management: The website leverages MongoDB for efficient and scalable data storage, ensuring reliable performance and data integrity for all user interactions and transactions.

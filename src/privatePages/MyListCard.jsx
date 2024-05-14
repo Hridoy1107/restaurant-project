@@ -20,7 +20,7 @@ const MyListCard = ({ food, foods, setFoods }) => {
             if (result.isConfirmed) {
 
 
-                fetch(`http://localhost:5000/foods/${_id}`, {
+                fetch(` https://restaurant-server-theta.vercel.app/foods/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -29,7 +29,7 @@ const MyListCard = ({ food, foods, setFoods }) => {
                         if (data.deletedCount > 0) {
                             Swal.fire(
                                 'Deleted!',
-                                'Your Place has been deleted.',
+                                'Your Dish has been deleted.',
                                 'success'
                             )
                             const remaining = foods.filter(food2 => food2._id !== _id);

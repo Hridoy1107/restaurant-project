@@ -10,7 +10,7 @@ const MyList = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
 
-    const url = `http://localhost:5000/foods?email=${user?.email}`;
+    const url = ` https://restaurant-server-theta.vercel.app/foods?email=${user?.email}`;
     useEffect(() => {
         fetch(url, {
             method: 'GET'

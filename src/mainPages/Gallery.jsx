@@ -24,7 +24,7 @@ const Gallery = () => {
 
         console.log(newGallery);
 
-        fetch('http://localhost:5000/gallery', {
+        fetch(' https://restaurant-server-theta.vercel.app/gallery', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

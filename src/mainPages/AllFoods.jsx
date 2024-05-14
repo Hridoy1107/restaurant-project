@@ -10,7 +10,7 @@ const AllFoods = () => {
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
 
-    const url = `http://localhost:5000/foods?searchTerm=${searchTerm}`;
+    const url = ` https://restaurant-server-theta.vercel.app/foods?searchTerm=${searchTerm}`;
     useEffect(() => {
         fetch(url, {
             method: 'GET'
@@ -85,7 +85,6 @@ const AllFoods = () => {
                         </div>
                     )
             }
-
         </>
     );
 };

@@ -12,7 +12,7 @@ const GalleryCards = ({ gallery, setGallery }) => {
 
     const fetchGallery = () => {
         setLoading(true);
-        const url = `http://localhost:5000/gallery?page=${page}&limit=${limit}`;
+        const url = ` https://restaurant-server-theta.vercel.app/gallery?page=${page}&limit=${limit}`;
         fetch(url)
             .then(res => res.json())
             .then(data => {

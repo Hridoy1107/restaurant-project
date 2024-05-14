@@ -29,7 +29,7 @@ const Edit = () => {
 
         console.log(editedFoods);
 
-        fetch(`http://localhost:5000/foods/${_id}`, {
+        fetch(` https://restaurant-server-theta.vercel.app/foods/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
