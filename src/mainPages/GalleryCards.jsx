@@ -50,7 +50,7 @@ const GalleryCards = ({ gallery, setGallery }) => {
                     <span className="loading loading-spinner loading-lg"></span>
                 ) :
                     (
-                        <div className="grid lg:grid-cols-4 gap-4 lg:px-0 px-4">
+                        <div className="grid lg:grid-cols-4 gap-4">
                             {
                                 gallery.map(review => <GalleryCard key={review._id} review={review}></GalleryCard>)
                             }

@@ -33,7 +33,7 @@ const TopFoods = () => {
                 loading ? (
                     <span className="loading loading-spinner loading-lg"></span>
                 ) : (
-                    <div className="grid mt-6 lg:grid-cols-3 gap-4 lg:px-0 px-4">
+                    <div className="grid mt-6 lg:grid-cols-3 gap-4 ">
                         {
                             foods.map(food => <TopFoodsCard key={food._id} food={food}></TopFoodsCard>)
                         }

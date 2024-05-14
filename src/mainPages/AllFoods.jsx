@@ -1,7 +1,6 @@
 import { useEffect, useState, } from 'react';
 import { useNavigate } from "react-router-dom";
 import AllFoodsCard from './AllFoodsCard';
-import { FaSearch } from "react-icons/fa";
 
 const AllFoods = () => {
 
@@ -66,10 +65,10 @@ const AllFoods = () => {
                     <label className="lg:mx-80 mx-4 input input-bordered flex items-center gap-2">
                         <input type="text" className="grow"
                         name="search" placeholder="Search a Dish" />
-                        <button className="btn btn-ghost h-12 w-28"><FaSearch /></button>
                     </label>
+                    <input type="submit" className="btn my-2 btn-info h-12 w-28" value="Search"/>
                 </form>
-                <div className="my-2">
+                <div className="mb-2">
                 <button onClick={handleReset} className="btn btn-warning h-12 w-28">Reset</button>
                 </div>
             </div>
@@ -78,7 +77,7 @@ const AllFoods = () => {
                     <span className="loading loading-spinner loading-lg"></span>
                 ) :
                     (
-                        <div className="grid mt-6 lg:grid-cols-3 gap-4 lg:px-0 px-4">
+                        <div className="grid mt-6 lg:grid-cols-3 gap-4">
                             {
                                 foods.map(food => <AllFoodsCard key={food._id} food={food}></AllFoodsCard>)
                             }

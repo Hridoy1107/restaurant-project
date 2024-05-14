@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const HomeCard = () => {
   return (
-    <section className="px-4 py-12">
+    <section className="lg:px-4 py-12">
       <div className="mx-auto w-fit">
         <Card />
       </div>
